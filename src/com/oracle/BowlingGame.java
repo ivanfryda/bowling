@@ -1,7 +1,5 @@
 package com.oracle;
 
-import java.util.Arrays;
-
 public class BowlingGame {
 
     private static final int MAX_POSSIBLE_THROWS = 21;
@@ -29,8 +27,11 @@ public class BowlingGame {
     }
 
     public boolean throwBall(int ball) {
-        int strikeBalls = (int) Arrays.stream(balls).filter(it -> it == 10).count();
-        int pinsLeft = (currentBall - strikeBalls) % 2 == 0 ? ALL_PINS : ALL_PINS - balls[currentBall - 1];
+        int currentShot = 0;
+        for (int i = 0; i < currentBall; i++) {
+            currentShot = currentShot == 0 && balls[i] != ALL_PINS ? 1 : 0;
+        }
+        int pinsLeft = currentShot == 0 ? ALL_PINS : ALL_PINS - balls[currentBall - 1];
         if (ball >= 0 && ball <= pinsLeft) {
             balls[currentBall++] = ball;
             return true;

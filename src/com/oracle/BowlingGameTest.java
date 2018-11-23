@@ -48,4 +48,9 @@ public class BowlingGameTest {
     public void testThrowBalls2() {
         bowlingGame.throwBalls(new int[] {10, 7, 3, 9, 2});
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowBalls3() {
+        bowlingGame.throwBalls(new int[] {10, 7, 3, 9, 1, 5, 5, 4, 6, 2, 8, 2, 2, 4, 4, 6, 3, 10, 2, 9});
+    }
 }
